@@ -14,7 +14,7 @@ Requirements:
 Run `node -v` (or `nodejs -v`) in your terminal to check if you meet the preconditions. The installation of this tool is straightforward:
 
 ```bash
-npm install global fboes/svg-split
+npm install -g svg-split
 ```
 
 Check if `svg-split` has installed successfully by starting the programme:
@@ -23,10 +23,9 @@ Check if `svg-split` has installed successfully by starting the programme:
 svg-split
 ```
 
-
 ## Usage
 
-You will need to draw a SVG file first. For Inkscape it is best to make all object coordinates absolute by selecting all paths in your SVG (<key>Ctrl</kbd> + <kbd>A</kbd>) and using  "Object > Transform", de-select "Relative Mode" and select "Apply to each" before hitting "Apply". 
+You will need to draw a SVG file first. For Inkscape it is best to make all object coordinates absolute by selecting all paths in your SVG (<key>Ctrl</kbd> + <kbd>A</kbd>) and using "Object > Transform", de-select "Relative Mode" and select "Apply to each" before hitting "Apply".
 
 ![](docs/hipper-2sideview.png)
 
@@ -45,6 +44,12 @@ If the number of objects in your SVG file is odd, and there is a single rectangl
 These SVG files can be imported into [Tinkercad](https://www.tinkercad.com/) - or used in any other way you can think of.
 
 ![](docs/hipper-tinkercad.png)
+
+## Status
+
+[![npm version](https://badge.fury.io/js/svg-split.svg)](https://badge.fury.io/js/svg-split)
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/fboes/svg-split.svg?sort=semver)
+![GitHub](https://img.shields.io/github/license/fboes/svg-split.svg)
 
 ## Legal stuff
 

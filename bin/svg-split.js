@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-import * as fs from 'fs';
-import { SvgSplit } from '../src/SvgSplit.js'
-import { getHtmlPreview } from '../src/Html.js'
+import * as fs from "fs";
+import { SvgSplit } from "../src/SvgSplit.js";
+import { getHtmlPreview } from "../src/Html.js";
 
 const consoleExit = (message, code = 0) => {
   if (code === 0) {
@@ -12,8 +12,6 @@ const consoleExit = (message, code = 0) => {
   }
   process.exit(code);
 };
-
-
 
 const fileInput = process.argv[2];
 if (fileInput === undefined || fileInput === "--help") {
@@ -52,11 +50,13 @@ let filter = process.argv[4] ?? "";
 // -----------------------------------------------------------------------------
 // Read
 
-const svg = new SvgSplit(fs.readFileSync(fileInput, { encoding: "utf8", flag: "r" }));
+const svg = new SvgSplit(
+  fs.readFileSync(fileInput, { encoding: "utf8", flag: "r" })
+);
 console.log(`📎 Found ${svg.elements.length} elements`);
 
 if (svg.elements.length % 2) {
-  svg.applyCookieCutter() &&  console.log("🍪 Using rectangle as cookie cutter");
+  svg.applyCookieCutter() && console.log("🍪 Using rectangle as cookie cutter");
 }
 
 if (filter) {
@@ -71,15 +71,18 @@ const fileParts = fileInput.match(/^(.+)(\.[^.]+)$/);
 let counter = 1;
 let filesOutput = [];
 for (const svgData of svg.fileData) {
-  const fileOutputBase = fileParts[1] + "-" + String(counter++).padStart(2, '0') + fileParts[2];
+  const fileOutputBase =
+    fileParts[1] + "-" + String(counter++).padStart(2, "0") + fileParts[2];
   const fileOutput = fileOutputPath + fileOutputBase;
   fs.writeFileSync(fileOutput, svgData);
   console.log(`✅ ${fileOutput} written`);
   filesOutput.push(fileOutputBase);
 }
 
-fs.writeFileSync(fileOutputPath + 'index.html', getHtmlPreview(filesOutput, fileInput));
-console.log(`✅ ${fileOutputPath + 'index.html'} written`);
-
+fs.writeFileSync(
+  fileOutputPath + "index.html",
+  getHtmlPreview(filesOutput, fileInput)
+);
+console.log(`✅ ${fileOutputPath + "index.html"} written`);
 
 consoleExit("✅ Done");
