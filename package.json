@@ -1,6 +1,6 @@
 {
   "name": "svg-split",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Split a single SVG file into multiple SVG files, each file containing one single SVG element.",
   "main": "bin/svg-split.js",
   "bin": {
