@@ -1,0 +1,25 @@
+{
+  "name": "svg-split",
+  "version": "1.0.0",
+  "description": "Split a single SVG file into multiple SVG files, each file containing one single SVG element.",
+  "main": "bin/svg-split.js",
+  "bin": {
+    "svg-split": "bin/svg-split.js"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "svg",
+    "cli"
+  ],
+  "type": "module",
+  "author": "Frank Boës <info@3960.org> (https://3960.org/)",
+  "license": "MIT"
+}
