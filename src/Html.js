@@ -1,5 +1,26 @@
+const htmlConvert = (text) => {
+  return String(text).replace(/[<>"&']/g, (m) => {
+    switch (m) {
+      case "<":
+        return "&lt;";
+      case ">":
+        return "&gt;";
+      case "&":
+        return "&amp;";
+      case '"':
+        return "&quot;";
+      case "'":
+        return "&apos;";
+      default:
+        return m;
+    }
+  });
+};
+
 export const getHtmlPreview = (filesOutput, fileInput) => {
-  filesOutput = htmlConvert(filesOutput);
+  filesOutput = filesOutput.map((fileOutput) => {
+    return htmlConvert(fileOutput);
+  });
   fileInput = htmlConvert(fileInput);
   let html = `<!DOCTYPE html>
 <html>
@@ -18,7 +39,7 @@ export const getHtmlPreview = (filesOutput, fileInput) => {
     <h1>${fileInput}</h1>
     <ul>
 `;
-  filesOutput.forEach(filesOutput => {
+  filesOutput.forEach((filesOutput) => {
     html += `      <li>${filesOutput} <a href="${filesOutput}"><img src="${filesOutput}" alt="${filesOutput}" /></a></li>\n`;
   });
   html += `    </ul>
@@ -27,7 +48,3 @@ export const getHtmlPreview = (filesOutput, fileInput) => {
 `;
   return html;
 };
-
-const htmlConvert(plain) {
-  return plain.replace(//, );
-}
