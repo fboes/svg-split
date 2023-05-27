@@ -4,6 +4,10 @@ import * as fs from "fs";
 import { SvgSplit } from "../src/SvgSplit.js";
 import { getHtmlPreview } from "../src/Html.js";
 
+/**
+ * @param {String} message
+ * @param {Number} code
+ */
 const consoleExit = (message, code = 0) => {
   if (code === 0) {
     console.log(message);
@@ -77,6 +81,13 @@ for (const svgData of svg.fileData) {
   fs.writeFileSync(fileOutput, svgData);
   console.log(`✅ ${fileOutput} written`);
   filesOutput.push(fileOutputBase);
+}
+
+{
+  const fileOutputOutline = fileParts[1] + "-outline" + fileParts[2];
+  fs.writeFileSync(fileOutputPath + fileOutputOutline, svg.combinedSvg);
+  console.log(`✅ ${fileOutputPath + fileOutputOutline} written`);
+  filesOutput.push(fileOutputOutline);
 }
 
 fs.writeFileSync(

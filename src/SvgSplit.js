@@ -1,4 +1,7 @@
 export class SvgSplit {
+  /**
+   * @param {String} svgData
+   */
   constructor(svgData) {
     const data = this.cleanup(svgData);
     this.parts = data.match(/^(.+?<svg[^>]+>)(.+)(<\/svg>\s+)$/ms);
@@ -9,6 +12,10 @@ export class SvgSplit {
     this.elements = [...this.parts[2].matchAll(/<[^>]+>/gms)];
   }
 
+  /**
+   * @param {String} svgData
+   * @returns String
+   */
   cleanup(svgData) {
     return svgData
       .replace(/<(clipPath|defs).+?\/\1>/gms, "")
@@ -23,6 +30,9 @@ export class SvgSplit {
       });
   }
 
+  /**
+   * @returns Boolean
+   */
   applyCookieCutter() {
     const svgElementRectangleIndex = this.elements.findIndex((svgElement) => {
       return svgElement[0].match(/<rect/);
@@ -57,10 +67,9 @@ export class SvgSplit {
       const pathY = Number(dPart[1]);
       if (pathY > y) {
         // Add cookie cutter to all elements which might intersect with it
-        svgElement[0] = svgElement[0].replace(
-          /(\sd=".+?)(")/,
-          `$1\n${rectangle}$2`
-        );
+        svgElement[0] = svgElement[0]
+          .replace(/(\sd=".+?)(")/, `$1\n${rectangle}$2`)
+          .replace(/(<\S+\s+)/, '$1class="cookie-cutter" ');
       }
 
       return svgElement;
@@ -69,6 +78,10 @@ export class SvgSplit {
     return true;
   }
 
+  /**
+   * @param {String} color
+   * @returns String
+   */
   convertColorCode(color) {
     switch (color) {
       case "red":
@@ -99,6 +112,9 @@ export class SvgSplit {
     return color;
   }
 
+  /**
+   * @param {String} filter
+   */
   filter(filter) {
     const filterRegEx = new RegExp(filter);
     this.elements = this.elements.filter((svgElement) => {
@@ -106,9 +122,28 @@ export class SvgSplit {
     });
   }
 
+  /**
+   * @returns String[]
+   */
   get fileData() {
     return this.elements.map((el) => {
       return this.parts[1] + "\n  " + el[0] + "\n" + this.parts[3];
     });
+  }
+
+  /**
+   * @returns String
+   */
+  get combinedSvg() {
+    const svg = this.elements
+      .filter((el) => {
+        return !el[0].match(/cookie-cutter/);
+      })
+      .map((el) => {
+        return el[0].replace(          /(\s+style=")(.*?)(")/gm,          ""        );
+      })
+      .reverse()
+      .join("\n    ");
+    return this.parts[1] + "\n  <g style=\"fill:#000000;stroke:#333333;stroke-width:0.1;\">\n    " + svg + "\n  </g>\n" + this.parts[3];
   }
 }

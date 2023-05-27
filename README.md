@@ -45,6 +45,24 @@ These SVG files can be imported into [Tinkercad](https://www.tinkercad.com/) - o
 
 ![](docs/hipper-tinkercad.png)
 
+### Advanced usage
+
+The second parameter of `svg-split` allows to output all output files to a different **output directory**:
+
+```bash
+svg-split YOUR_SVG_FILE.svg output/
+```
+
+This will create all new files in the subfolder `output`.
+
+The third parameter lets you **filter** all SVG elements by colors. If you only want to export a part of your SVG paths, use a fill our stroke color and give this color as the third parameter. All other paths will be ignored.
+
+```bash
+svg-split YOUR_SVG_FILE.svg output/ red
+```
+
+This will export only red SVG elements.
+
 ## Status
 
 [![npm version](https://badge.fury.io/js/svg-split.svg)](https://badge.fury.io/js/svg-split)
