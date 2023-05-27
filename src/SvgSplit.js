@@ -140,10 +140,16 @@ export class SvgSplit {
         return !el[0].match(/cookie-cutter/);
       })
       .map((el) => {
-        return el[0].replace(          /(\s+style=")(.*?)(")/gm,          ""        );
+        return el[0].replace(/(\s+style=")(.*?)(")/gm, "");
       })
       .reverse()
       .join("\n    ");
-    return this.parts[1] + "\n  <g style=\"fill:#000000;stroke:#333333;stroke-width:0.1;\">\n    " + svg + "\n  </g>\n" + this.parts[3];
+    return (
+      this.parts[1] +
+      '\n  <g style="fill:#000000;stroke:#333333;stroke-width:0.1;">\n    ' +
+      svg +
+      "\n  </g>\n" +
+      this.parts[3]
+    );
   }
 }
