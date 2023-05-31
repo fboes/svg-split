@@ -21,8 +21,8 @@ export class SvgSplit {
       .replace(/<(clipPath|defs).+?\/\1>/gms, "")
       .replace(/\s+(sodipodi|inkscape):(\S+)="[^"]*"/gm, "")
       .replace(/\s+xmlns:(sodipodi|inkscape)="[^"]*"/gm, "")
-      .replace(/\s+<\/?(g|image|defs|!--)(\s+[^>]+)?>/gm, "")
-      .replace(/\s+<\/?(sodipodi|inkscape):[a-zA-Z]+(\s+[^>]+)?>/gm, "")
+      .replace(/<\/?(g|image|defs|!--)(\s+[^>]+)?>/gm, "")
+      .replace(/<\/?(sodipodi|inkscape):[a-zA-Z]+(\s+[^>]+)?>/gm, "")
       .replace(/(\s+style=")(.*?)(")/gm, function (all, pre, style, post) {
         const colorMatch = style.match(/#[a-fA-F0-9]{3,6}/);
         const color = colorMatch ? colorMatch[0] : "#000000";
@@ -65,7 +65,7 @@ export class SvgSplit {
       }
 
       const pathY = Number(dPart[1]);
-      if (pathY > y) {
+      if (pathY > y && y + height > pathY) {
         // Add cookie cutter to all elements which might intersect with it
         svgElement[0] = svgElement[0]
           .replace(/(\sd=".+?)(")/, `$1\n${rectangle}$2`)
@@ -114,11 +114,16 @@ export class SvgSplit {
 
   /**
    * @param {String} filter
+   * @param {Boolean} reverseMode
    */
-  filter(filter) {
+  filter(filter, reverseMode = false) {
     const filterRegEx = new RegExp(filter);
     this.elements = this.elements.filter((svgElement) => {
-      return filterRegEx.test(svgElement);
+      let test = filterRegEx.test(svgElement);
+      if (reverseMode) {
+        test = !test;
+      }
+      return test;
     });
   }
 

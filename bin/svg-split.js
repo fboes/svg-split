@@ -31,6 +31,8 @@ Parameters:
                SVG exportetd. Defaults to '', which will output all parts.
                You may also use 'red', 'blue' and 'green' for color
                substitution.
+               If string is prefixed with '-' the filter is reversed: Only
+               parts with the string NOT present will be exported.
 
 Split a single SVG file into multiple SVG files, each file containing
 one single SVG element.
@@ -64,8 +66,12 @@ if (svg.elements.length % 2) {
 }
 
 if (filter) {
+  const reverseMode = filter.match(/^-/);
+  if (reverseMode) {
+    filter = filter.replace(/^-/, "");
+  }
   filter = svg.convertColorCode(filter);
-  svg.filter(filter);
+  svg.filter(filter, reverseMode);
   console.log(`🔎 Using filter, return only "${filter}"`);
 }
 

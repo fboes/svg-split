@@ -63,6 +63,8 @@ svg-split YOUR_SVG_FILE.svg output/ red
 
 This will export only red SVG elements.
 
+If filter is prefixed with `-` the filter is reversed: Only parts with the string \_not\_\_ present will be exported.
+
 ## Status
 
 [![npm version](https://badge.fury.io/js/svg-split.svg)](https://badge.fury.io/js/svg-split)
