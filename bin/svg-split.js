@@ -87,8 +87,7 @@ for (const svgData of svg.fileData) {
     suffix = label[1];
   }
 
-  const fileOutputBase =
-    fileParts[1] + "-" + suffix + fileParts[2];
+  const fileOutputBase = fileParts[1] + "-" + suffix + fileParts[2];
   const fileOutput = fileOutputPath + fileOutputBase;
   fs.writeFileSync(fileOutput, svgData);
   console.log(`✅ ${fileOutput} written`);
