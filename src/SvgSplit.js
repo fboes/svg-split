@@ -19,6 +19,7 @@ export class SvgSplit {
   cleanup(svgData) {
     return svgData
       .replace(/<(clipPath|defs).+?\/\1>/gms, "")
+      .replace(/inkscape:label/gm, "aria-label")
       .replace(/\s+(sodipodi|inkscape):(\S+)="[^"]*"/gm, "")
       .replace(/\s+xmlns:(sodipodi|inkscape)="[^"]*"/gm, "")
       .replace(/<\/?(g|image|defs|!--)(\s+[^>]+)?>/gm, "")

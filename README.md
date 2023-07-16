@@ -55,7 +55,7 @@ svg-split YOUR_SVG_FILE.svg output/
 
 This will create all new files in the subfolder `output`.
 
-The third parameter lets you **filter** all SVG elements by colors. If you only want to export a part of your SVG paths, use a fill our stroke color and give this color as the third parameter. All other paths will be ignored.
+The third parameter lets you **filter** all SVG elements by colours. If you only want to export a part of your SVG paths, use a fill our stroke colour and give this colour as the third parameter. All other paths will be ignored.
 
 ```bash
 svg-split YOUR_SVG_FILE.svg output/ red
@@ -63,7 +63,7 @@ svg-split YOUR_SVG_FILE.svg output/ red
 
 This will export only red SVG elements.
 
-If filter is prefixed with `-` the filter is reversed: Only parts with the string \_not\_\_ present will be exported.
+If filter is prefixed with `-` the filter is reversed: Only parts with the string _not_ present will be exported.
 
 ## Status
 

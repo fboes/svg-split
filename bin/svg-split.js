@@ -81,8 +81,14 @@ const fileParts = fileInput.match(/^(.+)(\.[^.]+)$/);
 let counter = 1;
 let filesOutput = [];
 for (const svgData of svg.fileData) {
+  let suffix = String(counter++).padStart(2, "0");
+  const label = svgData.match(/aria-label="(.+?)"/);
+  if (label) {
+    suffix = label[1];
+  }
+
   const fileOutputBase =
-    fileParts[1] + "-" + String(counter++).padStart(2, "0") + fileParts[2];
+    fileParts[1] + "-" + suffix + fileParts[2];
   const fileOutput = fileOutputPath + fileOutputBase;
   fs.writeFileSync(fileOutput, svgData);
   console.log(`✅ ${fileOutput} written`);
