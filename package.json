@@ -13,10 +13,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "eslint": "npx eslint bin src",
-    "eslint-fix": "npx eslint --fix bin src",
-    "prettier": "npx prettier --cache --check .",
-    "prettier-fix": "npx prettier --cache --write .",
+    "eslint": "npx eslint **/*.js --fix",
+    "prettier": "npx prettier --cache --write .",
     "test": "npm run eslint && npm run prettier"
   },
   "keywords": [
@@ -36,6 +34,9 @@
   "homepage": "https://github.com/fboes/svg-split#readme",
   "devDependencies": {
     "eslint": "^8.41.0",
-    "prettier": "2.8.8"
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-jsdoc": "^48.2.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "prettier": "3.2.5"
   }
 }

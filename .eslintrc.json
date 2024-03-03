@@ -1,13 +1,22 @@
 {
   "env": {
-    "node": true,
-    "es2021": true
+    "es2021": true,
+    "node": true
   },
-  "extends": "eslint:recommended",
-  "overrides": [],
+  "extends": [
+    "eslint:recommended",
+    "eslint-config-prettier",
+    "plugin:jsdoc/recommended-error"
+  ],
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "rules": {}
+  "rules": {
+    "jsdoc/require-param-description": 0,
+    "jsdoc/require-returns-description": 0
+  },
+  "plugins": [
+    "jsdoc"
+  ]
 }

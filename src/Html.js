@@ -1,6 +1,6 @@
 /**
- * @param {String} text
- * @returns String
+ * @param {string} text
+ * @returns {string}
  */
 const htmlConvert = (text) => {
   return String(text).replace(/[<>"&']/g, (m) => {
@@ -22,9 +22,9 @@ const htmlConvert = (text) => {
 };
 
 /**
- * @param {String[]} filesOutput
- * @param {String} fileInput
- * @returns String
+ * @param {string[]} filesOutput
+ * @param {string} fileInput
+ * @returns {string}
  */
 export const getHtmlPreview = (filesOutput, fileInput) => {
   filesOutput = filesOutput.map((fileOutput) => {

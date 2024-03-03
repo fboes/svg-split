@@ -1,6 +1,6 @@
 export class SvgSplit {
   /**
-   * @param {String} svgData
+   * @param {string} svgData
    */
   constructor(svgData) {
     const data = this.cleanup(svgData);
@@ -13,8 +13,8 @@ export class SvgSplit {
   }
 
   /**
-   * @param {String} svgData
-   * @returns String
+   * @param {string} svgData
+   * @returns {string}
    */
   cleanup(svgData) {
     return svgData
@@ -32,7 +32,7 @@ export class SvgSplit {
   }
 
   /**
-   * @returns Boolean
+   * @returns {boolean}
    */
   applyCookieCutter() {
     const svgElementRectangleIndex = this.elements.findIndex((svgElement) => {
@@ -80,8 +80,8 @@ export class SvgSplit {
   }
 
   /**
-   * @param {String} color
-   * @returns String
+   * @param {string} color
+   * @returns {string}
    */
   convertColorCode(color) {
     switch (color) {
@@ -114,8 +114,8 @@ export class SvgSplit {
   }
 
   /**
-   * @param {String} filter
-   * @param {Boolean} reverseMode
+   * @param {string} filter
+   * @param {boolean} reverseMode
    */
   filter(filter, reverseMode = false) {
     const filterRegEx = new RegExp(filter);
@@ -129,7 +129,7 @@ export class SvgSplit {
   }
 
   /**
-   * @returns String[]
+   * @returns {string[]}
    */
   get fileData() {
     return this.elements.map((el) => {
@@ -138,7 +138,7 @@ export class SvgSplit {
   }
 
   /**
-   * @returns String
+   * @returns {string}
    */
   get combinedSvg() {
     const svg = this.elements

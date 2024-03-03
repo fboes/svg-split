@@ -5,8 +5,8 @@ import { SvgSplit } from "../src/SvgSplit.js";
 import { getHtmlPreview } from "../src/Html.js";
 
 /**
- * @param {String} message
- * @param {Number} code
+ * @param {string} message
+ * @param {number} code
  */
 const consoleExit = (message, code = 0) => {
   if (code === 0) {
@@ -57,7 +57,7 @@ let filter = process.argv[4] ?? "";
 // Read
 
 const svg = new SvgSplit(
-  fs.readFileSync(fileInput, { encoding: "utf8", flag: "r" })
+  fs.readFileSync(fileInput, { encoding: "utf8", flag: "r" }),
 );
 console.log(`📎 Found ${svg.elements.length} elements`);
 
@@ -103,7 +103,7 @@ for (const svgData of svg.fileData) {
 
 fs.writeFileSync(
   fileOutputPath + "index.html",
-  getHtmlPreview(filesOutput, fileInput)
+  getHtmlPreview(filesOutput, fileInput),
 );
 console.log(`✅ ${fileOutputPath + "index.html"} written`);
 
